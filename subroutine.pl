@@ -1,4 +1,6 @@
 
+use feature 'state';
+
 print"\nCALLING AND DEFINE A SUBROUTINE\n";
 sub hello
 {
@@ -32,7 +34,7 @@ sub average
 	}
 	$average = $sum/$n;
 	print"average value is $average\n";
-	return $sum;
+	return $sum,10;
 }
 print" n value is $n\n";	# out of the scope 
 sub sample4
@@ -75,15 +77,28 @@ print"\npassing array as an argument : ";
 sample3(@a);
 
 print"\npassing array and scalar values as an arguments\n";
-$sum=average(4,5,@a,1);
+@sum=average(4,5,@a,1);
 
 print"returning values\n";
-print"sum of the passing arguments is $sum\n";
+print"sum of the passing arguments is @sum\n";
 
 
 print"\npassing hashes as an arguments\n";
 %hash = ("roshini"=>7,'vinay'=>5,'kalyan',6);
 sample4(%hash);
+
+
+
+sub PrintCount {
+   state $count = 0; # initial value
+   # state $count = 56;
+   print "Value of counter is $count\n";
+   $count++;
+}
+
+for (1..5) {
+   PrintCount();
+}
 
 
 
